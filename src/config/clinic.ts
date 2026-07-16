@@ -16,6 +16,23 @@ export interface Review {
   source: string;
 }
 
+export interface Doctor {
+  name: string;
+  role: string;
+  specialty: string;
+  bio: string;
+  image: string;
+  imageAlt: string;
+  lead?: boolean;
+}
+
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  caption: string;
+  layout: 'wide' | 'portrait';
+}
+
 export const clinic = {
   name: 'Дентална клиника Ирис',
   legalName: 'Дентална клиника Ирис · измислена демонстрация',
@@ -43,6 +60,81 @@ export const clinic = {
     { day: 'Събота', time: '09:00 – 14:00' },
     { day: 'Неделя', time: 'Почивен ден' },
   ],
+
+  media: {
+    hero: {
+      posterSrc: '/photos/iris/hero-poster.webp',
+      videoSrc: '',
+      videoType: 'video/mp4',
+    },
+    serviceBackdrop: '/photos/iris/clinic-reception.webp',
+  },
+
+  doctors: [
+    {
+      name: 'д-р Елена Маринова',
+      role: 'Водещ лекар',
+      specialty: 'Естетична и възстановителна стоматология',
+      bio: 'Съчетава внимателното изслушване с ясен план за естествен и устойчив резултат.',
+      image: '/photos/iris/doctor-elena.webp',
+      imageAlt: 'Измислен портрет на д-р Елена Маринова в демонстрационната клиника',
+      lead: true,
+    },
+    {
+      name: 'д-р Никола Георгиев',
+      role: 'Лекар по дентална медицина',
+      specialty: 'Имплантология и орална хирургия',
+      bio: 'Обяснява всяка стъпка спокойно и поставя предвидимостта пред прибързаните решения.',
+      image: '/photos/iris/doctor-nikola.webp',
+      imageAlt: 'Измислен портрет на д-р Никола Георгиев в демонстрационната клиника',
+    },
+    {
+      name: 'д-р Мила Петрова',
+      role: 'Лекар по дентална медицина',
+      specialty: 'Детска стоматология',
+      bio: 'Помага на децата да опознаят кабинета постепенно, с търпение и чувство за сигурност.',
+      image: '/photos/iris/doctor-mila.webp',
+      imageAlt: 'Измислен портрет на д-р Мила Петрова в демонстрационната клиника',
+    },
+    {
+      name: 'д-р Виктор Илиев',
+      role: 'Лекар по дентална медицина',
+      specialty: 'Профилактика и ортодонтска грижа',
+      bio: 'Работи за навици и решения, които пациентите могат уверено да следват всеки ден.',
+      image: '/photos/iris/doctor-viktor.webp',
+      imageAlt: 'Измислен портрет на д-р Виктор Илиев в демонстрационната клиника',
+    },
+  ] satisfies Doctor[],
+
+  gallery: [
+    {
+      src: '/photos/iris/clinic-reception.webp',
+      alt: 'Измислена светла рецепция на демонстрационната клиника Ирис',
+      caption: 'Светло посрещане и спокойна зона за изчакване.',
+      layout: 'wide',
+    },
+    {
+      src: '/photos/iris/clinic-treatment-room.webp',
+      alt: 'Измислен модерен кабинет в демонстрационната клиника Ирис',
+      caption: 'Подредена среда, която помага на пациента да се чувства сигурно.',
+      layout: 'portrait',
+    },
+    {
+      src: '/photos/iris/clinic-consultation.webp',
+      alt: 'Измислена консултация между лекар и пациент в клиника Ирис',
+      caption: 'Разговорът и ясното обяснение идват преди всяка следваща стъпка.',
+      layout: 'portrait',
+    },
+  ] satisfies GalleryItem[],
+
+  map: {
+    latitude: 42.6718,
+    longitude: 23.3094,
+    label: 'Примерна локация · район Южен парк, София',
+    embedUrl:
+      'https://www.openstreetmap.org/export/embed.html?bbox=23.2944%2C42.6628%2C23.3244%2C42.6808&layer=mapnik&marker=42.6718%2C23.3094',
+    externalUrl: 'https://www.openstreetmap.org/?mlat=42.6718&mlon=23.3094#map=16/42.6718/23.3094',
+  },
 
   services: [
     {

@@ -1,6 +1,9 @@
 node_modules/
 dist/
 .astro/
+
+# Local source generations; production derivatives live in public/photos/iris/
+.artifacts/
 .DS_Store
 
 # working material — not part of the deployed site

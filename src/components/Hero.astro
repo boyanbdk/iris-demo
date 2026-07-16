@@ -1,10 +1,35 @@
 ---
 import { clinic } from '../config/clinic';
+
+const { hero } = clinic.media;
 ---
 
 <section class="hero" data-hero id="top">
   <div class="hero__bg" data-hero-media aria-hidden="true">
-    <img class="hero__image" src="/photos/hero.jpg" alt="" width="3840" height="2560" />
+    <img
+      class="hero__image"
+      src={hero.posterSrc}
+      alt=""
+      width="2400"
+      height="1350"
+      fetchpriority="high"
+    />
+    {
+      hero.videoSrc && (
+        <video
+          class="hero__video"
+          data-hero-video
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster={hero.posterSrc}
+          aria-hidden="true"
+        >
+          <source src={hero.videoSrc} type={hero.videoType} />
+        </video>
+      )
+    }
     <div class="hero__scrim"></div>
   </div>
 
@@ -33,6 +58,26 @@ import { clinic } from '../config/clinic';
   </div>
 </section>
 
+<script>
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function syncHeroVideo() {
+    if (!video) return;
+    if (reducedMotion.matches) {
+      video.pause();
+      video.currentTime = 0;
+      return;
+    }
+    video.play().catch(() => {
+      // The poster remains visible when autoplay is unavailable.
+    });
+  }
+
+  syncHeroVideo();
+  reducedMotion.addEventListener('change', syncHeroVideo);
+</script>
+
 <style>
   .hero {
     position: relative;
@@ -44,14 +89,15 @@ import { clinic } from '../config/clinic';
     background: var(--bg);
   }
 
-  /* full-bleed stock-image backdrop */
+  /* full-bleed poster and optional future video backdrop */
   .hero__bg {
     position: absolute;
     inset: 0;
     z-index: 0;
     will-change: transform, opacity;
   }
-  .hero__image {
+  .hero__image,
+  .hero__video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -59,10 +105,14 @@ import { clinic } from '../config/clinic';
     object-fit: cover;
     object-position: center;
   }
-  /* ivory wash, heavy on the text side, fading out over the video */
+  .hero__video {
+    z-index: 1;
+  }
+  /* ivory wash, heavy on the text side, fading out over the media */
   .hero__scrim {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background: linear-gradient(
       92deg,
       rgba(245, 242, 236, 0.97) 0%,

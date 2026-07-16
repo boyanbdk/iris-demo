@@ -1,5 +1,6 @@
 ---
 import { clinic } from '../config/clinic';
+import ClinicMap from './ClinicMap.astro';
 ---
 
 <section class="section contact" id="contact">
@@ -8,8 +9,8 @@ import { clinic } from '../config/clinic';
       <span class="eyebrow">Контакти</span>
       <h2>Заповядайте при нас</h2>
       <p class="contact__lead">
-        Адресът, работното време и контактните данни са измислени, за да покажат как изглежда
-        завършена контактна секция. Този сайт не приема реални записвания.
+        Адресът, часовете и маркерът са измислени демонстрационни данни. Картата показва как реална
+        клиника може да насочи пациента, но този сайт не приема записвания.
       </p>
 
       <dl class="contact__rows">
@@ -44,12 +45,7 @@ import { clinic } from '../config/clinic';
       </div>
     </div>
 
-    <div class="contact__map contact__map--demo reveal reveal-scale" aria-label="Демонстрационна карта">
-      <span class="contact__pin" aria-hidden="true">◇</span>
-      <strong>Демонстрационна локация</strong>
-      <span>{clinic.address.street}, {clinic.address.city}</span>
-      <small>Няма връзка към реална карта.</small>
-    </div>
+    <ClinicMap />
   </div>
 </section>
 
@@ -107,43 +103,5 @@ import { clinic } from '../config/clinic';
   }
   .contact__cta {
     margin-top: 2.2rem;
-  }
-  .contact__map {
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    min-height: 380px;
-    background: var(--surface);
-  }
-  .contact__map--demo {
-    min-height: 380px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    padding: 2rem;
-    text-align: center;
-    background:
-      linear-gradient(rgba(245, 242, 236, 0.78), rgba(245, 242, 236, 0.88)),
-      url('/photos/clinic-interior.jpg') center / cover;
-  }
-  .contact__map--demo strong {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-  }
-  .contact__map--demo span,
-  .contact__map--demo small {
-    color: var(--ink-soft);
-  }
-  .contact__pin {
-    width: 48px;
-    height: 48px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--accent-deep);
-    color: #fff !important;
-    font-size: 1.2rem;
   }
 </style>

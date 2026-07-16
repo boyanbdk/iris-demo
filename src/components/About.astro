@@ -1,6 +1,9 @@
 ---
 import { clinic } from '../config/clinic';
 
+const leadDoctor = clinic.doctors.find((doctor) => doctor.lead);
+if (!leadDoctor) throw new Error('Iris requires one lead doctor');
+
 const points = [
   'Внимателно отношение и време за въпросите на пациента',
   'Ясно обяснение на предложените стъпки и възможности',
@@ -11,25 +14,30 @@ const points = [
 
 <section class="section about" id="about">
   <div class="wrap about__grid">
-    <div class="about__visual reveal reveal-scale">
+    <figure class="about__visual reveal reveal-scale">
       <img
         class="about__photo"
-        src="/photos/clinic-interior.jpg"
-        alt="Примерен интериор на модерен дентален кабинет"
-        width="1025"
-        height="1534"
+        src={leadDoctor.image}
+        alt={leadDoctor.imageAlt}
+        width="1200"
+        height="1500"
         loading="lazy"
       />
-    </div>
+      <figcaption>
+        <strong>{leadDoctor.name}</strong>
+        <span>{leadDoctor.specialty}</span>
+      </figcaption>
+    </figure>
 
     <div class="about__copy reveal">
       <span class="eyebrow">За клиниката</span>
       <h2>Стоматология, на която можете да се доверите</h2>
       <p>
         В <strong>{clinic.name}</strong> вярваме, че посещението при зъболекар не трябва да плаши.
-        {clinic.doctor} и екипът посрещат всеки пациент със спокойствие, търпение и внимание — от
-        първия преглед до крайния резултат.
+        {leadDoctor.name} и екипът посрещат всеки пациент със спокойствие, търпение и внимание —
+        от първия преглед до крайния резултат.
       </p>
+      <p>{leadDoctor.bio}</p>
       <ul class="about__list">
         {
           points.map((p) => (
@@ -61,12 +69,34 @@ const points = [
       grid-template-columns: 0.9fr 1.1fr;
     }
   }
+  .about__visual {
+    position: relative;
+    max-width: 520px;
+  }
   .about__photo {
     width: 100%;
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 4 / 5;
+    max-height: 620px;
     object-fit: cover;
+    object-position: center top;
     border-radius: var(--radius);
     box-shadow: var(--shadow-md);
+  }
+  .about__visual figcaption {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    display: grid;
+    gap: 0.1rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 253, 248, 0.92);
+    backdrop-filter: blur(10px);
+  }
+  .about__visual figcaption span {
+    color: var(--ink-soft);
+    font-size: 0.86rem;
   }
   .about__copy h2 {
     font-size: clamp(2rem, 4.2vw, 3rem);

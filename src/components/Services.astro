@@ -3,7 +3,11 @@ import { clinic } from '../config/clinic';
 import ServiceIcon from './ServiceIcon.astro';
 ---
 
-<section class="section" id="services">
+<section
+  class="section services"
+  id="services"
+  style={`--services-backdrop: url('${clinic.media.serviceBackdrop}')`}
+>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Какво предлагаме</span>
@@ -29,6 +33,20 @@ import ServiceIcon from './ServiceIcon.astro';
 </section>
 
 <style>
+  .services {
+    position: relative;
+    isolation: isolate;
+    background: var(--bg);
+  }
+  .services::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(rgba(245, 242, 236, 0.9), rgba(245, 242, 236, 0.96)),
+      var(--services-backdrop) center / cover;
+  }
   .svc-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -45,7 +63,8 @@ import ServiceIcon from './ServiceIcon.astro';
     }
   }
   .svc-card {
-    background: var(--surface);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 1.7rem 1.6rem 1.8rem;
@@ -66,5 +85,15 @@ import ServiceIcon from './ServiceIcon.astro';
     margin-top: 0.6rem;
     font-size: 0.98rem;
     color: var(--ink-soft);
+  }
+  @media (max-width: 619px) {
+    .services::before {
+      background:
+        linear-gradient(rgba(245, 242, 236, 0.96), rgba(245, 242, 236, 0.98)),
+        var(--services-backdrop) center / cover;
+    }
+    .svc-card {
+      backdrop-filter: none;
+    }
   }
 </style>

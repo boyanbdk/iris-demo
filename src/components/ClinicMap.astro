@@ -1,0 +1,66 @@
+---
+import { clinic } from '../config/clinic';
+---
+
+<figure class="clinic-map reveal reveal-scale">
+  <iframe
+    src={clinic.map.embedUrl}
+    title="Карта с примерна локация на измислената клиника Ирис"
+    loading="lazy"
+    referrerpolicy="no-referrer"
+  ></iframe>
+  <figcaption>
+    <strong>{clinic.map.label}</strong>
+    <span>Маркерът е илюстративен и не обозначава реална клиника.</span>
+    <a href={clinic.map.externalUrl} target="_blank" rel="noreferrer">
+      Отворете примерната локация в OpenStreetMap ↗
+    </a>
+  </figcaption>
+</figure>
+
+<style>
+  .clinic-map {
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+  }
+  .clinic-map iframe {
+    width: 100%;
+    min-height: 420px;
+    height: 100%;
+    border: 0;
+    filter: saturate(0.75) contrast(0.94);
+  }
+  .clinic-map figcaption {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 253, 248, 0.94);
+    backdrop-filter: blur(10px);
+  }
+  .clinic-map figcaption span {
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+  }
+  .clinic-map figcaption a {
+    margin-top: 0.35rem;
+    color: var(--accent-deep);
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+  @media (max-width: 599px) {
+    .clinic-map,
+    .clinic-map iframe {
+      min-height: 360px;
+    }
+  }
+</style>

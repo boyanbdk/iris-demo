@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "validate": "node scripts/validate-demo.mjs",
+    "check": "npm run build && npm run validate"
   },
   "dependencies": {
     "astro": "^5.6.1",

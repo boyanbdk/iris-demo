@@ -1,0 +1,92 @@
+---
+import { clinic } from '../config/clinic';
+---
+
+<section class="section team" id="team" aria-labelledby="team-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Нашият екип</span>
+      <h2 id="team-title">Четири гледни точки, една спокойна грижа</h2>
+      <p>
+        Измислен демонстрационен екип, който показва как реална клиника може ясно да представи
+        хората, опита и направленията си.
+      </p>
+    </div>
+    <div class="team__grid">
+      {
+        clinic.doctors.map((doctor) => (
+          <article class:list={['team-card', 'reveal', { 'team-card--lead': doctor.lead }]}>
+            <img src={doctor.image} alt={doctor.imageAlt} width="1000" height="1250" loading="lazy" />
+            <div class="team-card__copy">
+              <span>{doctor.role}</span>
+              <h3>{doctor.name}</h3>
+              <strong>{doctor.specialty}</strong>
+              <p>{doctor.bio}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .team {
+    background: var(--bg);
+  }
+  .team__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    max-width: 68rem;
+    margin-inline: auto;
+  }
+  .team-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+  .team-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .team-card__copy {
+    padding: 1.25rem;
+  }
+  .team-card__copy > span {
+    color: var(--accent-deep);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .team-card h3 {
+    margin-top: 0.45rem;
+    font-size: 1.45rem;
+  }
+  .team-card strong {
+    display: block;
+    margin-top: 0.4rem;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .team-card p {
+    margin-top: 0.8rem;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+  .team-card--lead {
+    border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
+  }
+  @media (min-width: 620px) {
+    .team__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

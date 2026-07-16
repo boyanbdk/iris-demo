@@ -74,6 +74,17 @@ img {
   display: block;
 }
 
+video {
+  display: block;
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-video] {
+    display: none;
+  }
+}
+
 /* ── layout helpers ─────────────────────────────────────── */
 .wrap {
   width: 100%;
