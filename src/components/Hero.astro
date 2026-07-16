@@ -1,0 +1,142 @@
+---
+import { clinic } from '../config/clinic';
+---
+
+<section class="hero" data-hero id="top">
+  <div class="hero__bg" data-hero-media aria-hidden="true">
+    <img class="hero__image" src="/photos/hero.jpg" alt="" width="3840" height="2560" />
+    <div class="hero__scrim"></div>
+  </div>
+
+  <div class="wrap hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow" data-hero-rise>Дентална клиника · София</span>
+
+      <h1 class="hero__title">
+        <span class="hero__line"><span class="hero__line-inner" data-hero-line>Внимателна грижа</span></span>
+        <span class="hero__line"><span class="hero__line-inner" data-hero-line>за вашата усмивка,</span></span>
+        <span class="hero__line"><span class="hero__line-inner" data-hero-line><em>без страх</em> и стрес.</span></span>
+      </h1>
+
+      <p class="hero__sub" data-hero-rise>{clinic.intro}</p>
+
+      <div class="hero__cta" data-hero-rise>
+        <a class="btn btn--primary" href="#contact">Запазете час</a>
+        <a class="btn btn--ghost" href="#services">Вижте услугите</a>
+      </div>
+
+      <div class="hero__proof" data-hero-rise>
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <span><strong>{clinic.rating}</strong> / 5 · примерна оценка от {clinic.reviewCount} отзива</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+    min-height: clamp(560px, 82vh, 800px);
+    padding-block: clamp(3.5rem, 7vw, 5.5rem);
+    background: var(--bg);
+  }
+
+  /* full-bleed stock-image backdrop */
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    will-change: transform, opacity;
+  }
+  .hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  /* ivory wash, heavy on the text side, fading out over the video */
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      92deg,
+      rgba(245, 242, 236, 0.97) 0%,
+      rgba(245, 242, 236, 0.92) 30%,
+      rgba(245, 242, 236, 0.66) 52%,
+      rgba(245, 242, 236, 0.3) 74%,
+      rgba(245, 242, 236, 0.14) 100%
+    );
+  }
+  @media (max-width: 939px) {
+    .hero__scrim {
+      background: linear-gradient(
+        180deg,
+        rgba(245, 242, 236, 0.95) 0%,
+        rgba(245, 242, 236, 0.88) 55%,
+        rgba(245, 242, 236, 0.78) 100%
+      );
+    }
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+  .hero__copy {
+    max-width: 580px;
+  }
+
+  .hero__title {
+    /* sized so the longest BG line ("за вашата усмивка,") never wraps inside
+       its reveal mask — a wrapped line gets clipped by the mask */
+    font-size: clamp(2.1rem, 4.4vw, 3.6rem);
+    margin-top: 1.4rem;
+  }
+  .hero__title em {
+    font-style: italic;
+    color: var(--accent-deep);
+  }
+  .hero__line {
+    display: block;
+    overflow: hidden;
+    margin-block: -0.12em;
+    padding-block: 0.12em;
+  }
+  .hero__line-inner {
+    display: block;
+    will-change: transform;
+  }
+
+  .hero__sub {
+    margin-top: 1.6rem;
+    max-width: 42ch;
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+  }
+  .hero__cta {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+  .hero__proof {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .hero__proof strong {
+    color: var(--ink);
+  }
+  .stars {
+    color: #e0a92e;
+    letter-spacing: 2px;
+  }
+</style>

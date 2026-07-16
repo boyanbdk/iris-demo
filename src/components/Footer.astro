@@ -1,0 +1,75 @@
+---
+import { clinic } from '../config/clinic';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <span class="brand__mark" aria-hidden="true">◇</span>
+      <span>{clinic.legalName}</span>
+    </div>
+    <nav class="footer__nav" aria-label="Долна навигация">
+      <a href="#services">Услуги</a>
+      <a href="#about">За нас</a>
+      <a href="#reviews">Отзиви</a>
+      <a href="#contact">Контакти</a>
+    </nav>
+    <div class="footer__meta">
+      <span>{clinic.address.street}, {clinic.address.city}</span>
+      <span>Демонстрация — без реален телефон</span>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <span>© {year} {clinic.name}. Измислена демонстрация на АвтоСилас.</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: rgba(242, 241, 236, 0.75);
+    padding-block: 3rem 2rem;
+    font-size: 0.94rem;
+    border-top: 1px solid rgba(242, 241, 236, 0.08);
+  }
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem 3rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(242, 241, 236, 0.12);
+  }
+  .footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: #f2f1ec;
+  }
+  .brand__mark {
+    color: var(--accent);
+  }
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+  }
+  .footer__nav a:hover,
+  .footer__meta a:hover {
+    color: #fff;
+  }
+  .footer__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .footer__legal {
+    padding-top: 1.6rem;
+    font-size: 0.82rem;
+    color: rgba(242, 241, 236, 0.5);
+  }
+</style>

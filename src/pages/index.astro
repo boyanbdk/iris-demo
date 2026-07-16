@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import StructuredData from '../components/StructuredData.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import Services from '../components/Services.astro';
+import About from '../components/About.astro';
+import Reviews from '../components/Reviews.astro';
+import Contact from '../components/Contact.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base>
+  <StructuredData slot="head" />
+  <Header />
+  <main id="main">
+    <Hero />
+    <Stats />
+    <Services />
+    <About />
+    <Reviews />
+    <Contact />
+    <CtaBand />
+  </main>
+  <Footer />
+</Base>

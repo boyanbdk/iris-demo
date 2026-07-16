@@ -1,0 +1,36 @@
+<aside class="demo-ribbon" aria-label="Информация за демонстрационния сайт">
+  <div class="wrap demo-ribbon__inner">
+    <span>Демонстрационен сайт на АвтоСилас — измислена клиника.</span>
+    <a href="https://autosilas.com/offers/">Искате такъв сайт? →</a>
+  </div>
+</aside>
+
+<style>
+  .demo-ribbon {
+    position: relative;
+    z-index: 70;
+    background: var(--ink);
+    color: #f2f1ec;
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+  .demo-ribbon__inner {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.8rem;
+    padding-block: 0.55rem;
+    text-align: center;
+  }
+  .demo-ribbon a {
+    color: #a9ddd5;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .demo-ribbon a:hover {
+    color: #fff;
+  }
+</style>

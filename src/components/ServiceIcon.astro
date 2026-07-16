@@ -1,0 +1,72 @@
+---
+interface Props {
+  icon: 'tooth' | 'implant' | 'sparkle' | 'crown' | 'child' | 'emergency';
+}
+const { icon } = Astro.props;
+---
+
+<span class="svc-icon" aria-hidden="true">
+  {
+    icon === 'tooth' && (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5.5c-1.8-1.6-4.4-2-6-.6-1.9 1.7-1.6 5 0 8.4.7 1.5.7 3 .9 4.4.2 1.3.5 2.3 1.4 2.3 1.1 0 1.1-1.8 1.4-3.3.2-1 .6-1.7 1.9-1.7s1.7.7 1.9 1.7c.3 1.5.3 3.3 1.4 3.3.9 0 1.2-1 1.4-2.3.2-1.4.2-2.9.9-4.4 1.6-3.4 1.9-6.7 0-8.4-1.6-1.4-4.2-1-6 .6Z" />
+      </svg>
+    )
+  }
+  {
+    icon === 'implant' && (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3c-2 0-3.5 1.3-3.5 3 0 1.2.6 1.9.6 3.2 0 .8-.3 1.4-.3 2.3" />
+        <path d="M15.5 6c0-1.7-1.5-3-3.5-3" />
+        <path d="M10 13h4" />
+        <path d="M10.5 16h3" />
+        <path d="M11 19h2" />
+        <path d="M12 11.5V21" />
+      </svg>
+    )
+  }
+  {
+    icon === 'sparkle' && (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" />
+        <path d="M18.5 15.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2Z" />
+      </svg>
+    )
+  }
+  {
+    icon === 'crown' && (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 8l3 3 5-6 5 6 3-3-1.5 10.5H5.5L4 8Z" />
+        <path d="M6.5 18.5h11" />
+      </svg>
+    )
+  }
+  {
+    icon === 'child' && (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="3.2" />
+        <path d="M9.5 8.2c.7.6 1.5.9 2.5.9s1.8-.3 2.5-.9" />
+        <path d="M6.5 20c0-3 2.4-5.2 5.5-5.2S17.5 17 17.5 20" />
+      </svg>
+    )
+  }
+  {
+    icon === 'emergency' && (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21s-7-4.3-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5C19 16.7 12 21 12 21Z" />
+        <path d="M9.5 12h2l1-2 1 3h2" />
+      </svg>
+    )
+  }
+</span>
+
+<style>
+  .svc-icon {
+    display: inline-flex;
+    color: var(--accent-deep);
+  }
+  .svc-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+</style>

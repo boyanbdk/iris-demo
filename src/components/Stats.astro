@@ -1,0 +1,57 @@
+---
+import { clinic } from '../config/clinic';
+
+const stats = [
+  { num: `${clinic.rating}★`, label: `Примерна оценка (${clinic.reviewCount} измислени отзива)` },
+  { num: `${clinic.yearsExperience}+`, label: 'Примерни години професионален опит' },
+  { num: '09–19', label: 'Примерно делнично работно време' },
+  { num: '6', label: 'Основни направления на грижа' },
+];
+---
+
+<section class="stats reveal">
+  <div class="wrap stats__grid">
+    {
+      stats.map((s) => (
+        <div class="stat">
+          <div class="stat__num">{s.num}</div>
+          <div class="stat__label">{s.label}</div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .stats {
+    border-block: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+  }
+  @media (min-width: 800px) {
+    .stats__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .stat {
+    padding: clamp(1.6rem, 3vw, 2.4rem) 0.5rem;
+    text-align: center;
+  }
+  .stat__num {
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat__label {
+    margin-top: 0.55rem;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    max-width: 22ch;
+    margin-inline: auto;
+  }
+</style>

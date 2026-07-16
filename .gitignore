@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+
+# working material — not part of the deployed site
+source-photos/
+enhanced-photos/
+.claude/
+.gstack/

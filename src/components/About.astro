@@ -1,0 +1,111 @@
+---
+import { clinic } from '../config/clinic';
+
+const points = [
+  'Внимателно отношение и време за въпросите на пациента',
+  'Ясно обяснение на предложените стъпки и възможности',
+  'Съвременна среда и индивидуален план за грижа',
+  'Спокоен подход към възрастни и деца',
+];
+---
+
+<section class="section about" id="about">
+  <div class="wrap about__grid">
+    <div class="about__visual reveal reveal-scale">
+      <img
+        class="about__photo"
+        src="/photos/clinic-interior.jpg"
+        alt="Примерен интериор на модерен дентален кабинет"
+        width="1025"
+        height="1534"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="about__copy reveal">
+      <span class="eyebrow">За клиниката</span>
+      <h2>Стоматология, на която можете да се доверите</h2>
+      <p>
+        В <strong>{clinic.name}</strong> вярваме, че посещението при зъболекар не трябва да плаши.
+        {clinic.doctor} и екипът посрещат всеки пациент със спокойствие, търпение и внимание — от
+        първия преглед до крайния резултат.
+      </p>
+      <ul class="about__list">
+        {
+          points.map((p) => (
+            <li>
+              <span class="tick" aria-hidden="true">
+                ✓
+              </span>
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+      <a class="btn btn--primary" href="#contact">Поискайте час</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--bg-deep);
+  }
+  .about__grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .about__grid {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+  }
+  .about__photo {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+  }
+  .about__copy h2 {
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    margin-top: 0.9rem;
+  }
+  .about__copy > p {
+    margin-top: 1.2rem;
+    color: var(--ink-soft);
+    font-size: 1.06rem;
+    max-width: 48ch;
+  }
+  .about__copy strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .about__list {
+    list-style: none;
+    padding: 0;
+    margin: 1.6rem 0 2rem;
+    display: grid;
+    gap: 0.8rem;
+  }
+  .about__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 1rem;
+  }
+  .tick {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-wash);
+    color: var(--accent-deep);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+</style>

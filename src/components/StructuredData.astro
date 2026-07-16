@@ -1,0 +1,37 @@
+---
+import { clinic } from '../config/clinic';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  name: clinic.name,
+  description: clinic.seo.description,
+  ...(Astro.site ? { url: Astro.site.toString() } : {}),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${clinic.address.street}, ${clinic.address.district}`,
+    addressLocality: 'София',
+    postalCode: '1000',
+    addressCountry: 'BG',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '19:00',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: Number(clinic.rating),
+    reviewCount: Number(clinic.reviewCount),
+  },
+  priceRange: '$$',
+  additionalProperty: {
+    '@type': 'PropertyValue',
+    name: 'Демонстрационен профил',
+    value: 'Всички данни са измислени.',
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

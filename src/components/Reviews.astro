@@ -1,0 +1,92 @@
+---
+import { clinic } from '../config/clinic';
+---
+
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Примерни отзиви</span>
+      <h2>Как може да изглежда секцията с доверие</h2>
+      <p>
+        Оценката {clinic.rating}★, броят от {clinic.reviewCount} отзива и всички текстове по-долу са
+        измислени демонстрационни данни, а не мнения на реални пациенти.
+      </p>
+    </div>
+
+    <div class="rev-grid">
+      {
+        clinic.reviews.map((r) => (
+          <figure class="rev-card reveal">
+            <div class="rev-stars" aria-hidden="true">
+              ★★★★★
+            </div>
+            <blockquote>{r.quote}</blockquote>
+            <figcaption>
+              <span class="rev-author">{r.author}</span>
+              <span class="rev-source">{r.source}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    {
+      clinic.ratingUrl && (
+        <a class="rev-link btn btn--ghost reveal" href={clinic.ratingUrl} target="_blank" rel="noopener">
+          Вижте всички отзиви в Google →<span class="sr-only"> (отваря се в нов раздел)</span>
+        </a>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .rev-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  @media (min-width: 760px) {
+    .rev-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .rev-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.7rem 1.6rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .rev-stars {
+    color: #e0a92e;
+    letter-spacing: 2px;
+    font-size: 0.95rem;
+  }
+  .rev-card blockquote {
+    font-family: var(--font-serif);
+    font-size: 1.18rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .rev-card figcaption {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .rev-author {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .rev-source {
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+  }
+  .rev-link {
+    margin-top: 2rem;
+  }
+</style>

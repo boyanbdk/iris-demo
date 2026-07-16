@@ -1,0 +1,149 @@
+---
+import { clinic } from '../config/clinic';
+---
+
+<section class="section contact" id="contact">
+  <div class="wrap contact__grid">
+    <div class="contact__info reveal">
+      <span class="eyebrow">Контакти</span>
+      <h2>Заповядайте при нас</h2>
+      <p class="contact__lead">
+        Адресът, работното време и контактните данни са измислени, за да покажат как изглежда
+        завършена контактна секция. Този сайт не приема реални записвания.
+      </p>
+
+      <dl class="contact__rows">
+        <div class="contact__row">
+          <dt>Адрес</dt>
+          <dd>
+            {clinic.address.street}<br />
+            {clinic.address.district}, {clinic.address.city}
+          </dd>
+        </div>
+        <div class="contact__row">
+          <dt>Телефон</dt>
+          <dd>Демонстрация — без реален телефон</dd>
+        </div>
+        <div class="contact__row">
+          <dt>Работно време</dt>
+          <dd>
+            {
+              clinic.hours.map((h) => (
+                <span class="contact__hours">
+                  <span>{h.day}</span>
+                  <span>{h.time}</span>
+                </span>
+              ))
+            }
+          </dd>
+        </div>
+      </dl>
+
+      <div class="contact__cta">
+        <a class="btn btn--primary" href="https://autosilas.com/offers/">Искате такъв сайт?</a>
+      </div>
+    </div>
+
+    <div class="contact__map contact__map--demo reveal reveal-scale" aria-label="Демонстрационна карта">
+      <span class="contact__pin" aria-hidden="true">◇</span>
+      <strong>Демонстрационна локация</strong>
+      <span>{clinic.address.street}, {clinic.address.city}</span>
+      <small>Няма връзка към реална карта.</small>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--bg-deep);
+  }
+  .contact__grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: stretch;
+  }
+  @media (min-width: 900px) {
+    .contact__grid {
+      grid-template-columns: 1fr 1.1fr;
+    }
+  }
+  .contact__info h2 {
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    margin-top: 0.9rem;
+  }
+  .contact__lead {
+    margin-top: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 44ch;
+  }
+  .contact__rows {
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 1.3rem;
+  }
+  .contact__row dt {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .contact__row dd {
+    margin: 0.35rem 0 0;
+    font-size: 1.05rem;
+  }
+  .contact__row a {
+    color: var(--accent-deep);
+    font-weight: 600;
+  }
+  .contact__hours {
+    display: flex;
+    justify-content: space-between;
+    max-width: 340px;
+    gap: 1rem;
+  }
+  .contact__hours span:last-child {
+    color: var(--ink-soft);
+  }
+  .contact__cta {
+    margin-top: 2.2rem;
+  }
+  .contact__map {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    min-height: 380px;
+    background: var(--surface);
+  }
+  .contact__map--demo {
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 2rem;
+    text-align: center;
+    background:
+      linear-gradient(rgba(245, 242, 236, 0.78), rgba(245, 242, 236, 0.88)),
+      url('/photos/clinic-interior.jpg') center / cover;
+  }
+  .contact__map--demo strong {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+  }
+  .contact__map--demo span,
+  .contact__map--demo small {
+    color: var(--ink-soft);
+  }
+  .contact__pin {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent-deep);
+    color: #fff !important;
+    font-size: 1.2rem;
+  }
+</style>
