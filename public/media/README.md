@@ -1,10 +1,11 @@
-# Iris hero video handoff
+# Iris hero video
 
-The final video is supplied separately by Boyan. When approved:
+The active hero video lives at `public/media/iris-hero.mp4` and is configured through
+`clinic.media.hero.videoSrc`.
 
-1. Save the optimized file as `public/media/iris-hero.mp4`.
-2. Use H.264 MP4, muted visual content, 16:9 framing, 8–20 seconds, seamless loop, and no embedded text or audio.
-3. Keep the file below 8 MB when practical.
-4. Set `clinic.media.hero.videoSrc` to `/media/iris-hero.mp4`.
+The supplied 16:9 source contained a moving corner watermark. The web derivative uses
+a centered 1920×720 cinematic crop that removes every watermark position without a blur
+or artificial patch. It is H.264, has no audio track, keeps fast-start metadata at the
+front of the file, and remains below the 8 MB delivery budget.
 
-Until that file exists, `videoSrc` must remain an empty string and the hero renders only the poster.
+Keep `hero-poster.webp` as the loading, autoplay-failure, and reduced-motion fallback.

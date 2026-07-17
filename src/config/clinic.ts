@@ -64,7 +64,7 @@ export const clinic = {
   media: {
     hero: {
       posterSrc: '/photos/iris/hero-poster.webp',
-      videoSrc: '',
+      videoSrc: '/media/iris-hero.mp4',
       videoType: 'video/mp4',
     },
     serviceBackdrop: '/photos/iris/clinic-reception.webp',

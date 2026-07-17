@@ -52,6 +52,7 @@ const requiredFiles = [
   'public/photos/iris/clinic-reception.webp',
   'public/photos/iris/clinic-treatment-room.webp',
   'public/photos/iris/clinic-consultation.webp',
+  'public/media/iris-hero.mp4',
   'public/media/README.md',
   'src/components/Team.astro',
   'src/components/ClinicGallery.astro',
@@ -78,7 +79,7 @@ for (const doctor of [
   requireText(widget, doctor, 'widget doctor');
 }
 
-requireText(clinic, "videoSrc: ''", 'empty future video source');
+requireText(clinic, "videoSrc: '/media/iris-hero.mp4'", 'approved hero video source');
 requireText(hero, 'data-hero-video', 'conditional hero video hook');
 requireText(page, '<Team />', 'team page section');
 requireText(page, '<ClinicGallery />', 'gallery page section');

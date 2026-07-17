@@ -18,6 +18,8 @@ The local site runs at `http://localhost:4326`. Production is built with
 
 The doctors, clinic scenes, reviews, address and map marker are fictional demonstration content. Production image derivatives live in `public/photos/iris/`; local source generations stay in ignored `.artifacts/`.
 
-The hero is poster-first. See `public/media/README.md` before adding Boyan's final video. An empty `clinic.media.hero.videoSrc` must emit no video request.
+The hero uses Boyan's optimized, silent video with the existing poster as its loading,
+autoplay-failure, and reduced-motion fallback. Processing details live in
+`public/media/README.md`.
 
 The map uses an illustrative OpenStreetMap point and must never be represented as a real clinic location or added to Dentist structured data.
