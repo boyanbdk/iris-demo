@@ -52,6 +52,11 @@ const requiredFiles = [
   'public/photos/iris/clinic-reception.webp',
   'public/photos/iris/clinic-treatment-room.webp',
   'public/photos/iris/clinic-consultation.webp',
+  'public/photos/iris/clinic-sterilization.webp',
+  'public/photos/iris/clinic-pediatric-corner.webp',
+  'public/photos/iris/clinic-accessible-entrance.webp',
+  'public/photos/iris/clinic-equipment-detail.webp',
+  'public/photos/iris/clinic-care-planning.webp',
   'public/media/iris-hero.mp4',
   'public/media/README.md',
   'src/components/Team.astro',
@@ -65,6 +70,9 @@ for (const relative of requiredFiles) {
 
 const clinic = await text(join(root, 'src/config/clinic.ts'));
 const hero = await text(join(root, 'src/components/Hero.astro'));
+const gallery = await text(join(root, 'src/components/ClinicGallery.astro'));
+const contact = await text(join(root, 'src/components/Contact.astro'));
+const widgetSource = await text(join(widgetRoot, 'widget/src/main.ts'));
 const page = await text(join(root, 'src/pages/index.astro'));
 const widget = await text(join(widgetRoot, 'configs/iris.json'));
 const built = await text(join(root, 'dist/index.html'));
@@ -81,6 +89,15 @@ for (const doctor of [
 
 requireText(clinic, "videoSrc: '/media/iris-hero.mp4'", 'approved hero video source');
 requireText(hero, 'data-hero-video', 'conditional hero video hook');
+requireText(gallery, '<dialog', 'gallery dialog');
+requireText(gallery, 'data-gallery-dialog', 'gallery dialog hook');
+requireText(gallery, 'data-gallery-previous', 'gallery previous control');
+requireText(gallery, 'data-gallery-next', 'gallery next control');
+requireText(contact, 'Попитайте Ирис', 'clinic assistant CTA');
+requireText(contact, 'За услуги, екип и работно време', 'clinic assistant supporting copy');
+requireText(contact, "new CustomEvent('autosilas:open'", 'clinic widget-open dispatch');
+requireText(contact, "clientId: 'iris'", 'Iris widget-open client ID');
+requireText(widgetSource, 'autosilas:open', 'widget open-event contract');
 requireText(page, '<Team />', 'team page section');
 requireText(page, '<ClinicGallery />', 'gallery page section');
 requireText(built, 'noindex, nofollow', 'noindex meta');
@@ -90,6 +107,43 @@ requireText(built, 'Маркерът е илюстративен', 'map disclosu
 requireText(built, 'data-client="iris"', 'Iris widget embed');
 requireText(widget, '"phone": ""', 'empty widget phone');
 requireText(widget, '"webhook": ""', 'empty widget webhook');
+
+if (/Искате такъв сайт\?/.test(contact)) {
+  errors.push('obsolete contact sales CTA remains');
+}
+
+if (/https:\/\/autosilas\.com\/offers\//.test(contact)) {
+  errors.push('contact must not contain an AutoSilas sales handoff');
+}
+
+for (const phrase of ['Запазете час', 'Поискайте час', 'Обадете се']) {
+  for (const file of await walk(join(root, 'src'))) {
+    if ((await readFile(file, 'utf8')).includes(phrase)) {
+      errors.push(`forbidden booking or call copy ${JSON.stringify(phrase)} in ${file.slice(root.length + 1)}`);
+    }
+  }
+}
+
+const galleryBlock = clinic.match(/gallery:\s*\[([\s\S]*?)\]\s*satisfies GalleryItem\[\]/)?.[1] ?? '';
+const galleryItems = [...galleryBlock.matchAll(/^\s*\{([\s\S]*?)^\s*\},?$/gm)].map(
+  ([, item]) => item,
+);
+if (galleryItems.length !== 8) {
+  errors.push(`expected 8 gallery items, found ${galleryItems.length}`);
+}
+
+for (const [index, item] of galleryItems.entries()) {
+  const itemLabel = `gallery item ${index + 1}`;
+  if ((item.match(/\bsrc:\s*['"]/g) ?? []).length !== 1) {
+    errors.push(`expected one source in ${itemLabel}`);
+  }
+
+  for (const field of ['width', 'height']) {
+    if ((item.match(new RegExp(`\\b${field}:\\s*\\d+\\b`, 'g')) ?? []).length !== 1) {
+      errors.push(`expected one explicit numeric ${field} in ${itemLabel}`);
+    }
+  }
+}
 
 const forbidden = [
   /Denta Heal/i,

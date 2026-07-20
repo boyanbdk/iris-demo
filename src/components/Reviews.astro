@@ -2,20 +2,29 @@
 import { clinic } from '../config/clinic';
 ---
 
-<section class="section" id="reviews">
+<section class="section" id="reviews" aria-labelledby="reviews-title">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Примерни отзиви</span>
-      <h2>Как може да изглежда секцията с доверие</h2>
-      <p>
-        Оценката {clinic.rating}★, броят от {clinic.reviewCount} отзива и всички текстове по-долу са
-        измислени демонстрационни данни, а не мнения на реални пациенти.
-      </p>
+    <div class="section-head rev-head reveal">
+      <div class="rev-head__intro">
+        <span class="eyebrow">Примерни отзиви</span>
+        <h2 id="reviews-title">Доверието започва с ясно обяснение</h2>
+      </div>
+
+      <div class="rev-head__meta">
+        <p class="rev-rating" aria-label={`Примерна оценка ${clinic.rating} от 5`}>
+          <strong>{clinic.rating}★</strong>
+          <span>примерна оценка от {clinic.reviewCount} отзива</span>
+        </p>
+        <p class="rev-disclosure">
+          Оценката {clinic.rating}★, броят от {clinic.reviewCount} отзива и всички текстове по-долу са
+          измислени демонстрационни данни, а не мнения на реални пациенти.
+        </p>
+      </div>
     </div>
 
     <div class="rev-grid">
       {
-        clinic.reviews.map((r) => (
+        clinic.reviews.slice(0, 3).map((r) => (
           <figure class="rev-card reveal">
             <div class="rev-stars" aria-hidden="true">
               ★★★★★
@@ -41,6 +50,38 @@ import { clinic } from '../config/clinic';
 </section>
 
 <style>
+  .rev-head {
+    max-width: none;
+  }
+  .rev-head__intro,
+  .rev-head__meta {
+    max-width: 46ch;
+  }
+  .rev-head__meta {
+    color: var(--ink-soft);
+  }
+  .rev-rating {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0;
+    color: var(--ink);
+  }
+  .rev-rating strong {
+    color: #e0a92e;
+    font-size: 1.7rem;
+    line-height: 1;
+  }
+  .rev-rating span {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .rev-disclosure {
+    margin-top: 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
   .rev-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -88,5 +129,13 @@ import { clinic } from '../config/clinic';
   }
   .rev-link {
     margin-top: 2rem;
+  }
+  @media (min-width: 760px) {
+    .rev-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+      align-items: end;
+      gap: clamp(2rem, 7vw, 7rem);
+    }
   }
 </style>

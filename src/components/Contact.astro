@@ -41,13 +41,43 @@ import ClinicMap from './ClinicMap.astro';
       </dl>
 
       <div class="contact__cta">
-        <a class="btn btn--primary" href="https://autosilas.com/offers/">Искате такъв сайт?</a>
+        <p>За услуги, екип и работно време</p>
+        <button class="btn btn--primary" type="button" data-iris-chat>Попитайте Ирис</button>
       </div>
     </div>
 
     <ClinicMap />
   </div>
 </section>
+
+<script>
+  const irisChatButton = document.querySelector<HTMLButtonElement>('[data-iris-chat]');
+  let retryTimeoutId: number | undefined;
+
+  function dispatchIrisOpen() {
+    document.dispatchEvent(
+      new CustomEvent('autosilas:open', { detail: { clientId: 'iris' } }),
+    );
+  }
+
+  irisChatButton?.addEventListener('click', () => {
+    const widgetMounted = Boolean(document.querySelector('[data-asw-chat]'));
+
+    if (widgetMounted && retryTimeoutId !== undefined) {
+      window.clearTimeout(retryTimeoutId);
+      retryTimeoutId = undefined;
+    }
+
+    dispatchIrisOpen();
+
+    if (widgetMounted || retryTimeoutId !== undefined) return;
+
+    retryTimeoutId = window.setTimeout(() => {
+      retryTimeoutId = undefined;
+      dispatchIrisOpen();
+    }, 400);
+  });
+</script>
 
 <style>
   .contact {
@@ -103,5 +133,9 @@ import ClinicMap from './ClinicMap.astro';
   }
   .contact__cta {
     margin-top: 2.2rem;
+  }
+  .contact__cta p {
+    color: var(--ink-soft);
+    margin: 0 0 0.8rem;
   }
 </style>

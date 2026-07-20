@@ -34,6 +34,23 @@ const jobs = [
   ['clinic-reception.png', 'clinic-reception.webp', 1800, 1200, 'attention'],
   ['clinic-treatment-room.png', 'clinic-treatment-room.webp', 1200, 1500, 'attention'],
   ['clinic-consultation.png', 'clinic-consultation.webp', 1200, 1500, 'attention'],
+  ['clinic-sterilization.png', 'clinic-sterilization.webp', 1800, 1200, 'attention'],
+  [
+    'clinic-pediatric-corner.png',
+    'clinic-pediatric-corner.webp',
+    1200,
+    1500,
+    'attention',
+  ],
+  [
+    'clinic-accessible-entrance.png',
+    'clinic-accessible-entrance.webp',
+    1800,
+    1200,
+    'attention',
+  ],
+  ['clinic-equipment-detail.png', 'clinic-equipment-detail.webp', 1200, 1500, 'attention'],
+  ['clinic-care-planning.png', 'clinic-care-planning.webp', 1800, 1200, 'attention'],
 ];
 
 await mkdir(output, { recursive: true });

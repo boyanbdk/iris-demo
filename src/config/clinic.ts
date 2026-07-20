@@ -31,6 +31,8 @@ export interface GalleryItem {
   alt: string;
   caption: string;
   layout: 'wide' | 'portrait';
+  width: number;
+  height: number;
 }
 
 export const clinic = {
@@ -112,18 +114,64 @@ export const clinic = {
       alt: 'Измислена светла рецепция на демонстрационната клиника Ирис',
       caption: 'Светло посрещане и спокойна зона за изчакване.',
       layout: 'wide',
+      width: 1800,
+      height: 1200,
     },
     {
       src: '/photos/iris/clinic-treatment-room.webp',
       alt: 'Измислен модерен кабинет в демонстрационната клиника Ирис',
       caption: 'Подредена среда, която помага на пациента да се чувства сигурно.',
       layout: 'portrait',
+      width: 1200,
+      height: 1500,
     },
     {
       src: '/photos/iris/clinic-consultation.webp',
       alt: 'Измислена консултация между лекар и пациент в клиника Ирис',
       caption: 'Разговорът и ясното обяснение идват преди всяка следваща стъпка.',
       layout: 'portrait',
+      width: 1200,
+      height: 1500,
+    },
+    {
+      src: '/photos/iris/clinic-sterilization.webp',
+      alt: 'Стерилизационна зона в демонстрационната клиника Ирис',
+      caption: 'Стерилната подготовка поддържа високи хигиенни стандарти.',
+      layout: 'wide',
+      width: 1800,
+      height: 1200,
+    },
+    {
+      src: '/photos/iris/clinic-pediatric-corner.webp',
+      alt: 'Детски кът в демонстрационната клиника Ирис',
+      caption: 'Удобният детски кът прави посещенията по-спокойни за семействата.',
+      layout: 'portrait',
+      width: 1200,
+      height: 1500,
+    },
+    {
+      src: '/photos/iris/clinic-accessible-entrance.webp',
+      alt: 'Достъпен вход към демонстрационната клиника Ирис',
+      caption: 'Достъпният вход улеснява придвижването на всеки посетител.',
+      layout: 'wide',
+      width: 1800,
+      height: 1200,
+    },
+    {
+      src: '/photos/iris/clinic-equipment-detail.webp',
+      alt: 'Детайл от дентална апаратура в демонстрационната клиника Ирис',
+      caption: 'Съвременната апаратура подпомага прецизната диагностика и лечение.',
+      layout: 'portrait',
+      width: 1200,
+      height: 1500,
+    },
+    {
+      src: '/photos/iris/clinic-care-planning.webp',
+      alt: 'Лекар и пациент обсъждат план за грижа в клиника Ирис',
+      caption: 'Ясният план подрежда следващите стъпки в грижата.',
+      layout: 'wide',
+      width: 1800,
+      height: 1200,
     },
   ] satisfies GalleryItem[],
 
