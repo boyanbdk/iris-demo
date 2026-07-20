@@ -89,10 +89,12 @@ for (const doctor of [
 
 requireText(clinic, "videoSrc: '/media/iris-hero.mp4'", 'approved hero video source');
 requireText(hero, 'data-hero-video', 'conditional hero video hook');
-requireText(gallery, '<dialog', 'gallery dialog');
-requireText(gallery, 'data-gallery-dialog', 'gallery dialog hook');
+requireText(gallery, 'data-gallery-carousel', 'inline gallery carousel');
+requireText(gallery, 'data-gallery-track', 'gallery scroll track');
+requireText(gallery, 'data-gallery-slide', 'gallery slide');
 requireText(gallery, 'data-gallery-previous', 'gallery previous control');
 requireText(gallery, 'data-gallery-next', 'gallery next control');
+requireText(gallery, 'data-gallery-counter', 'gallery counter');
 requireText(contact, 'Попитайте Ирис', 'clinic assistant CTA');
 requireText(contact, 'За услуги, екип и работно време', 'clinic assistant supporting copy');
 requireText(contact, "new CustomEvent('autosilas:open'", 'clinic widget-open dispatch');
@@ -114,6 +116,10 @@ if (/Искате такъв сайт\?/.test(contact)) {
 
 if (/https:\/\/autosilas\.com\/offers\//.test(contact)) {
   errors.push('contact must not contain an AutoSilas sales handoff');
+}
+
+if (/<dialog|data-gallery-dialog|data-gallery-trigger|Отворете изображението|>Отворете</.test(gallery)) {
+  errors.push('gallery must be an inline carousel without open-image affordances');
 }
 
 for (const phrase of ['Запазете час', 'Поискайте час', 'Обадете се']) {
